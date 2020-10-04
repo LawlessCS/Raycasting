@@ -3,25 +3,28 @@ let particle;
 
 let newBoundary;
 
+let dimToggle = 2;
+
 function setup() {
     createCanvas(1000, 800);
 
     walls = createBoundaries();
-    particle = new Particle(100, 200);
+    particle = new Particle(475,475);
 }
 
 function draw() {
-    background(0);
-
-    checkMovePlayer();
-
     particle.rayIntersect(walls);
-
+    
+    // 2D Drawing
+    background(0);
+    
     for (let wall of walls) {
         wall.show();
     }
-
+    
     particle.show();
+
+    checkMovePlayer();
 }
 
 function getCanvasSize() {
@@ -34,12 +37,34 @@ function mousePressed() {
 
 function mouseReleased() {
     if(mouseX != newBoundary.x && mouseY != newBoundary.y) {
-        console.log("if");
         walls.push(new Boundary(newBoundary.x, newBoundary.y, mouseX, mouseY));
     }
 }
 
 function checkMovePlayer() {
+    if (dimToggle == 3) {
+        // // 3D Drawing
+        background(0);
+
+        for (let i = 0; i < particle.fov * 2; ++i) {
+            noStroke();
+            fill(255);
+
+            let endPoint = particle.rays[i].getEndPoint();
+
+            let a = endPoint.x - particle.pos.x;
+            let b = endPoint.y - particle.pos.y;
+
+            let rayLength = Math.sqrt(a * a + b * b);
+            
+            if (rayLength != 0) {
+                let size = 750 / Math.pow(rayLength,0.5);
+                
+                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov)) +1, size);
+            }
+        }
+    }
+
     if (keyIsDown(LEFT_ARROW)) {
         particle.rotate(1)
     }
@@ -49,20 +74,20 @@ function checkMovePlayer() {
     }
 
     if (keyIsDown(87)) { // W
-        particle.move(0);
+        particle.move(-1);
     }
 
     if (keyIsDown(65)) { // A
-        particle.move(1);        
+        particle.move(0);        
     }
 
     if (keyIsDown(83)) { // S
-        particle.move(2);
+        particle.move(1);
     }
 
     if (keyIsDown(68)) { // D
-        particle.move(3);
-    }
+        particle.move(2);
+    }    
 }
 
 function keyPressed() {
@@ -78,5 +103,9 @@ function keyPressed() {
         } else {
             console.log("No walls to save");
         }
+    }
+
+    if (key == 'p') { 
+        dimToggle = (dimToggle == 2) ? 3 : 2;
     }
 }

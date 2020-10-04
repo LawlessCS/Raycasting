@@ -4,8 +4,8 @@ class Particle {
         this.rays = [];
         this.fov = 90;
 
-        for (let a = 0; a < this.fov; ++a) {
-            this.rays.push(new Ray(this.pos.x, this.pos.y, a - this.fov / 2));
+        for (let a = 0; a < this.fov * 2; ++a) {
+            this.rays.push(new Ray(this.pos.x, this.pos.y, (this.fov / 2 - a) / 2));
         }
     }
 
@@ -29,8 +29,9 @@ class Particle {
         let facing = (this.rays[0].getDir() + 45 + movementOffset) * Math.PI / 180;
 
 
-        this.pos.x += Math.cos(facing) * 3;
-        this.pos.y += -Math.sin(facing) * 3;
+        // Multiply by move speed
+        this.pos.x += Math.cos(facing) * 1;
+        this.pos.y += -Math.sin(facing) * 1;
         
         for (let i = 0; i < this.rays.length; ++i) {
             this.rays[i].moveTo(this.pos.x, this.pos.y);

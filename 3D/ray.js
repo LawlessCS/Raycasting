@@ -2,7 +2,7 @@ class Ray {
     constructor(x, y, d) {
         this.pos = createVector(x, y);
         this.dir = d;
-        this.endPoint = this.getEndPoint();
+        this.endPoint = this.calculateEndPoint();
         this.collides = false;
     }
     
@@ -16,7 +16,7 @@ class Ray {
         this.pos.x = x;
         this.pos.y = y;
 
-        this.endPoint = this.getEndPoint();
+        this.endPoint = this.calculateEndPoint();
     }
 
     getDir() {
@@ -31,7 +31,7 @@ class Ray {
         this.setDir(Math.atan2(this.pos.y - y, x - this.pos.x) * 180 / Math.PI);
     }
 
-    getEndPoint() {
+    calculateEndPoint() {
         // Get canvas size for end point calculations
         const canvasSize = getCanvasSize();
         // Get maximum size of line from pythagorus-ing canvas dimensions
@@ -46,6 +46,10 @@ class Ray {
         return endPoint;
     }
 
+    getEndPoint() {
+        return this.endPoint;
+    }
+
     checkIntersect(wall) {
         const x1 = wall.a.x;
         const y1 = wall.a.y;
@@ -55,7 +59,7 @@ class Ray {
         const x3 = this.pos.x;
         const y3 = this.pos.y;        
         
-        let endPoint = this.getEndPoint();
+        let endPoint = this.calculateEndPoint();
         const x4 = endPoint.x;
         const y4 = endPoint.y;
 

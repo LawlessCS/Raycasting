@@ -41,5 +41,11 @@ function createBoundaries() {
     walls.push(new Boundary(761, 179, 822, 235));
     walls.push(new Boundary(728, 38, 875, 137));
 
+    // Thick Wall
+    walls.push(new Boundary(463, 290, 463, 440));
+    walls.push(new Boundary(470, 290, 470, 440));
+    walls.push(new Boundary(470, 440, 463, 440));
+    walls.push(new Boundary(470, 290, 463, 290));
+
     return walls;
 }

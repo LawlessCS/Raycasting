@@ -4,10 +4,12 @@ class Ray {
         this.dir = d;
         this.endPoint = this.calculateEndPoint();
         this.collides = false;
+
+        this.colour = {r: 255, g: 255, b: 255};
     }
     
     show() {
-        stroke(255,0,0,75);
+        stroke(this.colour.r, this.colour.g, this.colour.b);
 
         line(this.pos.x, this.pos.y, this.endPoint.x, this.endPoint.y);
     }

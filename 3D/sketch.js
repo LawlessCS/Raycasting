@@ -37,7 +37,7 @@ function mousePressed() {
 
 function mouseReleased() {
     if(mouseX != newBoundary.x && mouseY != newBoundary.y) {
-        walls.push(new Boundary(newBoundary.x, newBoundary.y, mouseX, mouseY));
+        walls.push(new Boundary(newBoundary.x, newBoundary.y, mouseX, mouseY, {r: 255, g: 255, b: 255}));
     }
 }
 
@@ -48,7 +48,7 @@ function checkMovePlayer() {
 
         for (let i = 0; i < particle.fov * 2; ++i) {
             noStroke();
-            fill(255);
+            fill(particle.rays[i].colour.r, particle.rays[i].colour.g, particle.rays[i].colour.b);
 
             let endPoint = particle.rays[i].getEndPoint();
 
@@ -60,7 +60,7 @@ function checkMovePlayer() {
             if (rayLength != 0) {
                 let size = 750 / Math.pow(rayLength,0.5);
                 
-                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov)) +1, size);
+                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov)) - 1, size);
             }
         }
     }
@@ -105,7 +105,7 @@ function keyPressed() {
         }
     }
 
-    if (key == 'p') { 
+    if (key == ' ') { 
         dimToggle = (dimToggle == 2) ? 3 : 2;
     }
 }

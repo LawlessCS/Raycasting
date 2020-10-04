@@ -56,6 +56,7 @@ class Particle {
 
                 if (intersect) {
                     intersections.push(intersect);
+                    ray.colour = wall.colour;
                 }
             }
 

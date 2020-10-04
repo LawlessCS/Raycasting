@@ -19,6 +19,10 @@ class Ray {
         this.endPoint = this.getEndPoint();
     }
 
+    getDir() {
+        return this.dir;
+    }
+
     setDir(d) {
         this.dir = d;
     }

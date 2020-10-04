@@ -2,9 +2,10 @@ class Particle {
     constructor(x, y) {
         this.pos = createVector(x, y);
         this.rays = [];
+        this.fov = 90;
 
-        for (let a = 0; a < 720; a += 2) {
-            this.rays.push(new Ray(this.pos.x, this.pos.y, a));
+        for (let a = 0; a < this.fov; ++a) {
+            this.rays.push(new Ray(this.pos.x, this.pos.y, a - this.fov / 2));
         }
     }
 
@@ -20,6 +21,28 @@ class Particle {
 
         for (let ray of this.rays) {
             ray.moveTo(x, y);
+        }
+    }
+
+    move(dir) {
+        let movementOffset = 90 * dir;
+        let facing = (this.rays[0].getDir() + 45 + movementOffset) * Math.PI / 180;
+
+
+        this.pos.x += Math.cos(facing) * 3;
+        this.pos.y += -Math.sin(facing) * 3;
+        
+        for (let i = 0; i < this.rays.length; ++i) {
+            this.rays[i].moveTo(this.pos.x, this.pos.y);
+        }
+    }
+
+    rotate(dir) {
+        // -1 for clockwise
+        // 1 for anticlockwise
+        // multiplied by rotation speed        
+        for (let i = 0; i < this.rays.length; ++i) {
+            this.rays[i].setDir(this.rays[i].getDir() + dir * 3);
         }
     }
 

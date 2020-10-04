@@ -13,7 +13,8 @@ function setup() {
 function draw() {
     background(0);
 
-    particle.moveTo(mouseX, mouseY);
+    checkMovePlayer();
+
     particle.rayIntersect(walls);
 
     for (let wall of walls) {
@@ -35,6 +36,32 @@ function mouseReleased() {
     if(mouseX != newBoundary.x && mouseY != newBoundary.y) {
         console.log("if");
         walls.push(new Boundary(newBoundary.x, newBoundary.y, mouseX, mouseY));
+    }
+}
+
+function checkMovePlayer() {
+    if (keyIsDown(LEFT_ARROW)) {
+        particle.rotate(1)
+    }
+
+    if (keyIsDown(RIGHT_ARROW)) {
+        particle.rotate(-1);
+    }
+
+    if (keyIsDown(87)) { // W
+        particle.move(0);
+    }
+
+    if (keyIsDown(65)) { // A
+        particle.move(1);        
+    }
+
+    if (keyIsDown(83)) { // S
+        particle.move(2);
+    }
+
+    if (keyIsDown(68)) { // D
+        particle.move(3);
     }
 }
 

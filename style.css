@@ -1,13 +1,15 @@
 body
 {
-    width: 700px;
+    width: 75%;
     margin: 25px auto;
 }
 
 #container
 {
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 a
@@ -17,12 +19,13 @@ a
 
 #container div
 {
+    margin: 25px;
     width: 300px;
     height: 150px;
     background-color: #f88;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 h1
@@ -30,4 +33,5 @@ h1
     font-family: Arial;
     color: #fff;
     font-size: 3em;
+    margin: 0;
 }

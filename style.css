@@ -1,0 +1,33 @@
+body
+{
+    width: 700px;
+    margin: 25px auto;
+}
+
+#container
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+#container div
+{
+    width: 300px;
+    height: 150px;
+    background-color: #f88;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1
+{
+    font-family: Arial;
+    color: #fff;
+    font-size: 3em;
+}

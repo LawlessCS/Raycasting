@@ -55,8 +55,7 @@ class Particle {
                 let intersect = ray.checkIntersect(wall);
 
                 if (intersect) {
-                    intersections.push(intersect);
-                    ray.colour = wall.colour;
+                    intersections.push({point: intersect, colour: wall.colour});
                 }
             }
 
@@ -65,14 +64,15 @@ class Particle {
                 let closestIndex = -1;
 
                 for (let i = 0; i < intersections.length; ++i) {
-                    let dist = Math.abs(Math.pow(intersections[i].x - ray.pos.x, 2) + Math.pow(intersections[i].y - ray.pos.y, 2))
+                    let dist = Math.abs(Math.pow(intersections[i].point.x - ray.pos.x, 2) + Math.pow(intersections[i].point.y - ray.pos.y, 2))
                     if (dist < closest) {
                         closest = dist;
                         closestIndex = i;
                     }
                 }
 
-                ray.trim(intersections[closestIndex]);
+                ray.trim(intersections[closestIndex].point);
+                ray.colour = intersections[closestIndex].colour;
             }
         }
     }

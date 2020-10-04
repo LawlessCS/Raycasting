@@ -60,7 +60,7 @@ function checkMovePlayer() {
             if (rayLength != 0) {
                 let size = 750 / Math.pow(rayLength,0.5);
                 
-                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov)) - 1, size);
+                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov * 2)) + 1, size);
             }
         }
     }

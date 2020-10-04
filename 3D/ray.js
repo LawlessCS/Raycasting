@@ -7,7 +7,7 @@ class Ray {
     }
     
     show() {
-        stroke(255,100);
+        stroke(255,0,0,75);
 
         line(this.pos.x, this.pos.y, this.endPoint.x, this.endPoint.y);
     }

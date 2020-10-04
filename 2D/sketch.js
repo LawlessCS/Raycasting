@@ -1,8 +1,6 @@
 let walls;
 let particle;
 
-let newBoundary;
-
 function setup() {
     createCanvas(1000, 800);
 
@@ -25,17 +23,6 @@ function draw() {
 
 function getCanvasSize() {
     return createVector(width, height);
-}
-
-function mousePressed() {
-    newBoundary = createVector(mouseX, mouseY);
-}
-
-function mouseReleased() {
-    if(mouseX != newBoundary.x && mouseY != newBoundary.y) {
-        console.log("if");
-        walls.push(new Boundary(newBoundary.x, newBoundary.y, mouseX, mouseY));
-    }
 }
 
 function keyPressed() {

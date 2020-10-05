@@ -31,9 +31,11 @@ function draw() {
             let rayLength = Math.sqrt(a * a + b * b);
             
             if (rayLength != 0) {
-                let size = 750 / Math.pow(rayLength,0.5);
+                let size = 500 / Math.pow(rayLength,0.35);
+                // let size = -rayLength + 250;
+                // if (size < 0) { size = 0; }
                 
-                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov * 2)) + 1, size);
+                rect(i * width / (particle.fov * 5), (height - size) / 2, (width / (particle.fov * 5)) + 1, size);
             }
         }
     } else {

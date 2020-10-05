@@ -3,7 +3,7 @@ class Particle {
         this.pos = createVector(x, y);
         this.rays = [];
         this.fov = 60;
-        this.adjustedFov = this.fov * 5;
+        this.adjustedFov = this.fov * 2;
 
         for (let a = 0; a < this.adjustedFov; ++a) {
             this.rays.push(new Ray(this.pos.x, this.pos.y, (this.fov / 2 - a) / (this.adjustedFov / this.fov)));

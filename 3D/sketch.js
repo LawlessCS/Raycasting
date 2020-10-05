@@ -45,8 +45,10 @@ function checkMovePlayer() {
     if (dimToggle == 3) {
         // // 3D Drawing
         background(0);
+        fill(139, 69, 19);
+        rect(0, height / 2, width, height / 2);
 
-        for (let i = 0; i < particle.fov * 2; ++i) {
+        for (let i = 0; i < particle.fov * 5; ++i) {
             noStroke();
             fill(particle.rays[i].colour.r, particle.rays[i].colour.g, particle.rays[i].colour.b);
 
@@ -58,9 +60,11 @@ function checkMovePlayer() {
             let rayLength = Math.sqrt(a * a + b * b);
             
             if (rayLength != 0) {
-                let size = 750 / Math.pow(rayLength,0.5);
+                let size = 500 / Math.pow(rayLength,0.35);
+                // let size = -rayLength + 250;
+                // if (size < 0) { size = 0; }
                 
-                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov * 2)) + 1, size);
+                rect(i * width / (particle.fov * 5), (height - size) / 2, (width / (particle.fov * 5)) + 1, size);
             }
         }
     }

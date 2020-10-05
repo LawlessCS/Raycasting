@@ -14,15 +14,35 @@ function setup() {
 
 function draw() {
     particle.rayIntersect(walls);
-    
-    // 2D Drawing
-    background(0);
-    
-    for (let wall of walls) {
-        wall.show();
-    }
-    
-    particle.show();
+	
+	background(0);
+	
+	// Draw 3D Map
+	if (dimToggle == 3) {
+        for (let i = 0; i < particle.fov * 2; ++i) {
+            noStroke();
+            fill(particle.rays[i].colour.r, particle.rays[i].colour.g, particle.rays[i].colour.b);
+
+            let endPoint = particle.rays[i].getEndPoint();
+
+            let a = endPoint.x - particle.pos.x;
+            let b = endPoint.y - particle.pos.y;
+
+            let rayLength = Math.sqrt(a * a + b * b);
+            
+            if (rayLength != 0) {
+                let size = 750 / Math.pow(rayLength,0.5);
+                
+                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov * 2)) + 1, size);
+            }
+        }
+    } else {
+		for (let wall of walls) {
+			wall.show();
+		}
+		
+		particle.show();
+	}
 
     checkMovePlayer();
 }
@@ -42,29 +62,6 @@ function mouseReleased() {
 }
 
 function checkMovePlayer() {
-    if (dimToggle == 3) {
-        // // 3D Drawing
-        background(0);
-
-        for (let i = 0; i < particle.fov * 2; ++i) {
-            noStroke();
-            fill(particle.rays[i].colour.r, particle.rays[i].colour.g, particle.rays[i].colour.b);
-
-            let endPoint = particle.rays[i].getEndPoint();
-
-            let a = endPoint.x - particle.pos.x;
-            let b = endPoint.y - particle.pos.y;
-
-            let rayLength = Math.sqrt(a * a + b * b);
-            
-            if (rayLength != 0) {
-                let size = 750 / Math.pow(rayLength,0.5);
-                
-                rect(i * width / (particle.fov * 2), (height - size) / 2, (width / (particle.fov * 2)) + 1, size);
-            }
-        }
-    }
-
     if (keyIsDown(LEFT_ARROW)) {
         particle.rotate(1)
     }

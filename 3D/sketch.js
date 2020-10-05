@@ -19,7 +19,7 @@ function draw() {
 	
 	// Draw 3D Map
 	if (dimToggle == 3) {
-        for (let i = 0; i < particle.fov * 5; ++i) {
+        for (let i = 0; i < particle.adjustedFov; ++i) {
             noStroke();
             fill(particle.rays[i].colour.r, particle.rays[i].colour.g, particle.rays[i].colour.b);
 
@@ -33,7 +33,7 @@ function draw() {
             if (rayLength != 0) {
                 let size = 500 / Math.pow(rayLength,0.35);
                 
-                rect(i * width / (particle.fov * 5), (height - size) / 2, (width / (particle.fov * 5)) + 1, size);
+                rect(i * width / particle.adjustedFov, (height - size) / 2, (width / particle.adjustedFov) + 1, size);
             }
         }
     } else {

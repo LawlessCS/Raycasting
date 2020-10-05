@@ -19,7 +19,7 @@ function draw() {
 	
 	// Draw 3D Map
 	if (dimToggle == 3) {
-        for (let i = 0; i < particle.fov * 2; ++i) {
+        for (let i = 0; i < particle.fov * 5; ++i) {
             noStroke();
             fill(particle.rays[i].colour.r, particle.rays[i].colour.g, particle.rays[i].colour.b);
 

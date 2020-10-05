@@ -4,8 +4,8 @@ class Particle {
         this.rays = [];
         this.fov = 90;
 
-        for (let a = 0; a < this.fov * 2; ++a) {
-            this.rays.push(new Ray(this.pos.x, this.pos.y, (this.fov / 2 - a) / 2));
+        for (let a = 0; a < this.fov * 5; ++a) {
+            this.rays.push(new Ray(this.pos.x, this.pos.y, (this.fov / 2 - a) / 5));
         }
     }
 
